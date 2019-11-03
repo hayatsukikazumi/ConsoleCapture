@@ -97,7 +97,7 @@ public class ConsoleCapture {
      * 元の標準出力にも出力するかを設定する。
      * @param oto 元の標準出力にも出力する場合はtrue
      */
-    public void redirectToOriginel(boolean oto) {
+    public void redirectToOriginal(boolean oto) {
         redirect = oto;
     }
 

@@ -55,7 +55,7 @@ public class SampleTest {
 
         // キャプチャ開始
         ConsoleCapture cap = ConsoleCapture.getInstance();
-        cap.redirectToOriginel(false); // 標準出力に出さない
+        cap.redirectToOriginal(false); // 標準出力に出さない
         cap.start(buf1, buf1);
 
         // コンソール出力のある処理

@@ -96,7 +96,7 @@ public class ConsoleCaptureTest {
     public void testOutNullCapture() throws Throwable {
         CaptureBuffer buf = new CaptureBuffer();
         ConsoleCapture cap = ConsoleCapture.getInstance();
-        cap.redirectToOriginel(true);
+        cap.redirectToOriginal(true);
         cap.start(null, buf);
         System.out.println("☆これがコンソールに出なかったらエラー1");
         System.err.println("☆これがコンソールに出なかったらエラー2");
@@ -111,7 +111,7 @@ public class ConsoleCaptureTest {
     public void testErrNullCapture() throws Throwable {
         CaptureBuffer buf = new CaptureBuffer();
         ConsoleCapture cap = ConsoleCapture.getInstance();
-        cap.redirectToOriginel(false);
+        cap.redirectToOriginal(false);
         cap.start(buf, null);
         System.out.println("★N これがコンソールに出たらエラー1");
         System.err.println("★N これがコンソールに出たらエラー2");
@@ -127,13 +127,13 @@ public class ConsoleCaptureTest {
         CaptureBuffer b1 = new CaptureBuffer();
         CaptureBuffer b2 = new CaptureBuffer();
         ConsoleCapture cap = ConsoleCapture.getInstance();
-        cap.redirectToOriginel(false);
+        cap.redirectToOriginal(false);
         cap.start(b1, b2);
 
         System.out.println("★これがコンソールに出たらエラー1");
         System.err.println("★これがコンソールに出たらエラー2");
 
-        cap.redirectToOriginel(true);
+        cap.redirectToOriginal(true);
 
         System.err.println("☆これがコンソールに出なかったらエラー1");
         System.out.println("☆これがコンソールに出なかったらエラー2");
@@ -172,7 +172,7 @@ public class ConsoleCaptureTest {
     public void testFinalize() throws Throwable {
         CaptureBuffer buf = new CaptureBuffer();
         ConsoleCapture cap = ConsoleCapture.getInstance();
-        cap.redirectToOriginel(false);
+        cap.redirectToOriginal(false);
         cap.start(buf, buf);
 
         System.out.println("★F これがコンソールに出たらエラー1");
