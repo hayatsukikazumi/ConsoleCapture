@@ -52,6 +52,8 @@ public class ConsoleCapture {
      * キャプチャを開始する。
      * 2つの引数に同じCaptureBufferのインスタンスを指定してもよい。
      * 引数にnullを指定した場合、その出力はキャプチャしない。
+     * 既に開始済みの場合は無視される。
+     * （キャプチャを終了しないとCaptureBufferを変更できない）
      * @param outBuf 標準出力用CaptureBuffer
      * @param errBuf エラー出力用CaptureBuffer
      */
@@ -71,7 +73,7 @@ public class ConsoleCapture {
 
     /**
      * キャプチャを終了する。
-     * キャプチャされたデータは getCapturedList() で取得可能。
+     * 既に終了済みの場合は何もしない。
      */
     public synchronized void stop() {
         if (inCapture) {

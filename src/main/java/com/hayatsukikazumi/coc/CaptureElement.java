@@ -12,6 +12,7 @@ import java.util.Date;
  */
 public class CaptureElement implements Serializable {
 
+    private static final long serialVersionUID = -4192858923818207578L;
     private static final String DATE_FMT = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
     private static final String SEP = "\t";
 

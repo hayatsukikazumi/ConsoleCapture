@@ -54,7 +54,7 @@ public class CaptureBufferTest {
     @Test
     public void testIllegalSize() {
         try {
-            new CaptureBuffer(-500);
+            new CaptureBuffer(-1);
         } catch (IllegalArgumentException e) {
             return;
         }
