@@ -18,6 +18,9 @@ Java（バージョン1.7以降の実行環境）をインストールしたマ�
 ## 変更履歴
 
 * 2019/11/03 Ver. 1.0.0を公開
+* 2019/11/07 Ver. 1.0.1を公開
+    * ConsoleCapture#start(CaptureBuffer, CaptureBuffer, boolean) メソッド追加
+    * コメント修正
 
 --------
 Copyright(c) はやつきかづみ（早月加積） 2019

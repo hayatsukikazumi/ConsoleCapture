@@ -11,6 +11,8 @@ import java.util.regex.Pattern;
 
 /**
  * キャプチャ結果のログを保持するバッファ。
+ *
+ * https://github.com/hayatsukikazumi/ConsoleCapture
  * @author Hayatsukikazumi
  * @date 2019/11/03
  */

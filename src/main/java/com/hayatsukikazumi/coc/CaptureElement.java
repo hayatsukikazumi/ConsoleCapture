@@ -7,6 +7,8 @@ import java.util.Date;
 
 /**
  * イミュータブルな1行のキャプチャ結果。
+ *
+ * https://github.com/hayatsukikazumi/ConsoleCapture
  * @author Hayatsukikazumi
  * @date 2019/11/03
  */
@@ -85,15 +87,15 @@ public class CaptureElement implements Serializable {
         DateFormat df = new SimpleDateFormat(DATE_FMT);
         StringBuilder sb = new StringBuilder();
 
-        sb.append(this.lineNumber);
+        sb.append(lineNumber);
         sb.append(SEP);
-        sb.append(this.type);
+        sb.append(type);
         sb.append(SEP);
         sb.append(df.format(getStartTime()));
         sb.append(SEP);
         sb.append(df.format(getEndTime()));
         sb.append(SEP);
-        sb.append(this.message);
+        sb.append(message);
 
         return sb.toString();
     }

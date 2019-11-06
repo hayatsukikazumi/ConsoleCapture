@@ -23,7 +23,7 @@ public class CaptureElementTest {
 
     @Test
     public void testProperties() {
-        
+
         Date st = new Date();
         try {
             Thread.sleep(200);
@@ -40,7 +40,7 @@ public class CaptureElementTest {
 
     @Test
     public void testMessageNull() {
-        
+
         CaptureElement elem = new CaptureElement(2, CETT.A, 100, null);
 
         assertEquals("getLineNumber", 2, elem.getLineNumber());
@@ -60,4 +60,17 @@ public class CaptureElementTest {
 
         assertEquals("1234567890\tC\t" + s1 + "\t" + s2 + "\tMessage C", elem.toString());
     }
+
+    @Test
+    public void testToStringTypeNull() {
+
+        CaptureElement elem = new CaptureElement(0, null, 1515151515000L, "AAA");
+
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        String s1 = sf.format(new Date(1515151515000L));
+        String s2 = sf.format(elem.getEndTime());
+
+        assertEquals("0\tnull\t" + s1 + "\t" + s2 + "\tAAA", elem.toString());
+    }
+
 }

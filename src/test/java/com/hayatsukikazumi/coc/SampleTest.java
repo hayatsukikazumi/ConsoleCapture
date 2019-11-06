@@ -54,18 +54,24 @@ public class SampleTest {
         CaptureBuffer buf1 = new CaptureBuffer();
 
         // キャプチャ開始
-        ConsoleCapture cap = ConsoleCapture.getInstance();
-        cap.redirectToOriginal(false); // 標準出力に出さない
-        cap.start(buf1, buf1);
+        ConsoleCapture.getInstance().start(buf1, buf1, false);
 
         // コンソール出力のある処理
         System.out.println("Output");
         System.err.println("Error Output");
 
-        cap.stop();
+        // 元のコンソールにも出力する
+        ConsoleCapture.getInstance().redirectToOriginal(true);
+
+        // コンソール出力のある処理
+        System.out.println("Output to console");
+        System.err.println("Error Output to console");
+
+        // キャプチャ終了
+        ConsoleCapture.getInstance().stop();
 
         // 評価
-        assertEquals(2, buf1.size());
+        assertEquals(4, buf1.size());
 
         // キャプチャ内容を出力
         for (CaptureElement el : buf1.getList()) {

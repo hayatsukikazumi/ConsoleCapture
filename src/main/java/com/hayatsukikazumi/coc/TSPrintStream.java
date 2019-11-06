@@ -7,6 +7,8 @@ import java.util.Locale;
 
 /**
  * スレッドセーフなPrintStream。
+ *
+ * https://github.com/hayatsukikazumi/ConsoleCapture
  * @author Hayatsukikazumi
  * @date 2019/11/03
  */

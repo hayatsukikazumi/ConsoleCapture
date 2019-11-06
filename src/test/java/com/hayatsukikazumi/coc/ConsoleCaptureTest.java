@@ -123,6 +123,51 @@ public class ConsoleCaptureTest {
     }
 
     @Test
+    public void testStartWithOutputToOriginal() throws Throwable {
+        CaptureBuffer b1 = new CaptureBuffer();
+        CaptureBuffer b2 = new CaptureBuffer();
+        ConsoleCapture cap = ConsoleCapture.getInstance();
+        cap.start(b1, b2, false);
+
+        System.out.println("★これがコンソールに出たらエラー1");
+        System.err.println("★これがコンソールに出たらエラー2");
+
+        cap.redirectToOriginal(true);
+
+        System.err.println("☆これがコンソールに出なかったらエラー1");
+        System.out.println("☆これがコンソールに出なかったらエラー2");
+
+        cap.stop();
+
+        System.out.println("☆停止中1");
+        System.err.println("☆停止中2");
+
+        CaptureElement el;
+
+        List<CaptureElement> ls1 = b1.getList();
+        assertEquals(2, ls1.size());
+
+        el = ls1.get(0);
+        assertEquals(ConsoleCapture.Type.OUT, el.getType());
+        assertEquals("★これがコンソールに出たらエラー1" + System.lineSeparator(), el.getMessage());
+
+        el = ls1.get(1);
+        assertEquals(ConsoleCapture.Type.OUT, el.getType());
+        assertEquals("☆これがコンソールに出なかったらエラー2" + System.lineSeparator(), el.getMessage());
+
+        List<CaptureElement> ls2 = b2.getList();
+        assertEquals(2, ls2.size());
+
+        el = ls2.get(0);
+        assertEquals(ConsoleCapture.Type.ERR, el.getType());
+        assertEquals("★これがコンソールに出たらエラー2" + System.lineSeparator(), el.getMessage());
+
+        el = ls2.get(1);
+        assertEquals(ConsoleCapture.Type.ERR, el.getType());
+        assertEquals("☆これがコンソールに出なかったらエラー1" + System.lineSeparator(), el.getMessage());
+    }
+
+    @Test
     public void testSetOutputToOriginal() throws Throwable {
         CaptureBuffer b1 = new CaptureBuffer();
         CaptureBuffer b2 = new CaptureBuffer();

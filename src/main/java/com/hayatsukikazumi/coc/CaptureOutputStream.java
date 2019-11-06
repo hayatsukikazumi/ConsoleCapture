@@ -5,6 +5,8 @@ import java.io.IOException;
 
 /**
  * 書き込んだ内容を、1行ごとにキャプチャーするOutputStream。 スレッドセーフではない。
+ *
+ * https://github.com/hayatsukikazumi/ConsoleCapture
  * @author Hayatsukikazumi
  * @date 2019/11/03
  */

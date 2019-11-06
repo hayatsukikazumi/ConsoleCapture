@@ -1,7 +1,9 @@
 package com.hayatsukikazumi.coc;
 
 /**
- * 1行キャプチャのイベントリスナー
+ * 1行キャプチャのイベントリスナー。
+ *
+ * https://github.com/hayatsukikazumi/ConsoleCapture
  * @author Hayatsukikazumi
  * @date 2019/11/03
  */

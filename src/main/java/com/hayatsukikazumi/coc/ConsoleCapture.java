@@ -4,6 +4,8 @@ import java.io.PrintStream;
 
 /**
  * コンソール出力をキャプチャする。
+ * ｓ
+ * https://github.com/hayatsukikazumi/ConsoleCapture
  * @author Hayatsukikazumi
  * @date 2019/11/03
  */
@@ -69,6 +71,21 @@ public class ConsoleCapture {
             System.setOut(new TSPrintStream(newOut));
             System.setErr(new TSPrintStream(newErr));
         }
+    }
+
+    /**
+     * キャプチャを開始する。
+     * 2つの引数に同じCaptureBufferのインスタンスを指定してもよい。
+     * 引数にnullを指定した場合、その出力はキャプチャしない。
+     * 既に開始済みの場合は無視される。
+     * （キャプチャを終了しないとCaptureBufferを変更できない）
+     * @param outBuf 標準出力用CaptureBuffer
+     * @param errBuf エラー出力用CaptureBuffer
+     * @param oto 元の標準出力にも出力する場合はtrue
+     */
+    public synchronized void start(CaptureBuffer outBuf, CaptureBuffer errBuf, boolean oto) {
+        redirect = oto;
+        start(outBuf, errBuf);
     }
 
     /**
