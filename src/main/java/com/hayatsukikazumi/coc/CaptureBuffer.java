@@ -1,5 +1,6 @@
 package com.hayatsukikazumi.coc;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -24,7 +25,7 @@ public class CaptureBuffer {
 
     /**
      * コンストラクタ。
-     * デフォルトの最大保持行数(1024)
+     * デフォルトの最大保持行数(1024)が適用される。
      */
     public CaptureBuffer() {
         this(1024);
@@ -83,7 +84,7 @@ public class CaptureBuffer {
      * @return 保持しているログのコピー
      */
     public List<CaptureElement> getList() {
-        return new LinkedList<CaptureElement>(captureList);
+        return new ArrayList<CaptureElement>(captureList);
     }
 
     /**
@@ -91,7 +92,7 @@ public class CaptureBuffer {
      * @return 保持しているログのコピー
      */
     public List<CaptureElement> getListAndClear() {
-        List<CaptureElement> retList = new LinkedList<CaptureElement>();
+        List<CaptureElement> retList = new ArrayList<CaptureElement>(captureList.size());
         synchronized (captureList) {
             Iterator<CaptureElement> it = captureList.iterator();
             while (it.hasNext()) {
@@ -208,27 +209,27 @@ public class CaptureBuffer {
     /**
      * 保持しているログから検索文字列の正規表現に一致する最初の結果を返す。
      * @param needle 検索文字列
-     * @param lineNum 検索を開始するCaptureElementの行番号
+     * @param startLineNum 検索を開始するCaptureElementの行番号
      * @return 当該文字列が存在するキャプチャ結果。ヒットしない場合はnull
      */
-    public CaptureElement match(String needle, int lineNum) {
+    public CaptureElement match(String needle, int startLineNum) {
         List<CaptureElement> haystack = getList();
-        return match(needle, haystack, lineNum);
+        return match(needle, haystack, startLineNum);
     }
 
     /**
      * ログから検索文字列の正規表現に一致する最初の結果を返す。
      * @param pattern 正規表現
      * @param haystack ログ
-     * @param lineNum 検索を開始するCaptureElementの行番号（Integer.MIN_VALUE=最初から検索）
+     * @param startLineNum 検索を開始するCaptureElementの行番号（Integer.MIN_VALUE=最初から検索）
      * @return 当該文字列が存在するキャプチャ結果。ヒットしない場合はnull
      */
-    private static CaptureElement match(String pattern, List<CaptureElement> haystack, int lineNum) {
+    private static CaptureElement match(String pattern, List<CaptureElement> haystack, int startLineNum) {
 
         Pattern p = Pattern.compile(pattern);
 
         for (CaptureElement elem : haystack) {
-            if (elem.getLineNumber() < lineNum) continue;
+            if (elem.getLineNumber() < startLineNum) continue;
             Matcher m = p.matcher(elem.getMessage());
             if (m.find()) return elem;
         }
@@ -248,30 +249,29 @@ public class CaptureBuffer {
 
     /**
      * 保持しているログから検索文字列の正規表現に一致する最後の結果を返す。
-     * @param needle 検索文字列
-     * @param lineNum 検索を開始するCaptureElementの行番号
+     * @param pattern 検索文字列
+     * @param startLineNum 検索を開始するCaptureElementの行番号
      * @return 当該文字列が存在するキャプチャ結果。ヒットしない場合はnull
      */
-    public CaptureElement matchLast(String needle, int lineNum) {
+    public CaptureElement matchLast(String pattern, int startLineNum) {
         List<CaptureElement> haystack = getList();
-        return matchLast(needle, haystack, lineNum);
+        return matchLast(pattern, haystack, startLineNum);
     }
-
 
     /**
      * ログから検索文字列の正規表現に一致する最後の結果を返す。
      * @param pattern 正規表現
      * @param haystack ログ
-     * @param lineNum 検索を開始するCaptureElementの行番号（Integer.MAX_VALUE=最後から検索）
+     * @param startLineNum 検索を開始するCaptureElementの行番号（Integer.MAX_VALUE=最後から検索）
      * @return 当該文字列が存在するキャプチャ結果。ヒットしない場合はnull
      */
-    private static CaptureElement matchLast(String pattern, List<CaptureElement> haystack, int lineNum) {
+    private static CaptureElement matchLast(String pattern, List<CaptureElement> haystack, int startLineNum) {
 
         Pattern p = Pattern.compile(pattern);
 
         for (ListIterator<CaptureElement> it = haystack.listIterator(haystack.size()); it.hasPrevious();) {
             CaptureElement elem = it.previous();
-            if (elem.getLineNumber() > lineNum) continue;
+            if (elem.getLineNumber() > startLineNum) continue;
             Matcher m = p.matcher(elem.getMessage());
             if (m.find()) return elem;
         }

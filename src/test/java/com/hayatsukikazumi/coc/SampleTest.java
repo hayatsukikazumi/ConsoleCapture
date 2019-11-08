@@ -8,6 +8,8 @@ import org.junit.Test;
 
 /**
  * ConsoleCaptureを使ったJunitテストケースのサンプル。
+ *
+ * https://github.com/hayatsukikazumi/ConsoleCapture
  * @author Hayatsukikazumi
  */
 public class SampleTest {
@@ -57,8 +59,8 @@ public class SampleTest {
         ConsoleCapture.getInstance().start(buf1, buf1, false);
 
         // コンソール出力のある処理
-        System.out.println("Output");
-        System.err.println("Error Output");
+        System.out.println("Output test2");
+        System.err.println("Error Output test2");
 
         // 元のコンソールにも出力する
         ConsoleCapture.getInstance().redirectToOriginal(true);
