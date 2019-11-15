@@ -1,5 +1,8 @@
 package com.hayatsukikazumi.coc;
-
+/*
+ * https://github.com/hayatsukikazumi/ConsoleCapture
+ * created on 2019/11/03
+ */
 import static org.junit.Assert.*;
 
 import java.text.SimpleDateFormat;

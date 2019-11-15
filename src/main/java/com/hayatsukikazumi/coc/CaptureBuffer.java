@@ -1,5 +1,8 @@
 package com.hayatsukikazumi.coc;
-
+/*
+ * https://github.com/hayatsukikazumi/ConsoleCapture
+ * created on 2019/11/03
+ */
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -13,8 +16,6 @@ import java.util.regex.Pattern;
 /**
  * キャプチャ結果のログを保持するバッファ。
  *
- * https://github.com/hayatsukikazumi/ConsoleCapture
- * created on 2019/11/03
  * @author Hayatsukikazumi
  */
 public class CaptureBuffer {

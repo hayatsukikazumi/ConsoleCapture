@@ -1,13 +1,14 @@
 package com.hayatsukikazumi.coc;
-
+/*
+ * https://github.com/hayatsukikazumi/ConsoleCapture
+ * created on 2019/11/03
+ */
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /**
- * 書き込んだ内容を、1行ごとにキャプチャーするOutputStream。 スレッドセーフではない。
+ * 書き込んだ内容を、1行ごとにキャプチャーするOutputStream。スレッドセーフではない。
  *
- * https://github.com/hayatsukikazumi/ConsoleCapture
- * created on 2019/11/03
  * @author Hayatsukikazumi
  */
 public class CaptureOutputStream extends ByteArrayOutputStream {

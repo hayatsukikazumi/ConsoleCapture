@@ -1,5 +1,8 @@
 package com.hayatsukikazumi.coc;
-
+/*
+ * https://github.com/hayatsukikazumi/ConsoleCapture
+ * created on 2019/11/03
+ */
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -9,7 +12,6 @@ import org.junit.Test;
 /**
  * ConsoleCaptureを使ったJunitテストケースのサンプル。
  *
- * https://github.com/hayatsukikazumi/ConsoleCapture
  * @author Hayatsukikazumi
  */
 public class SampleTest {

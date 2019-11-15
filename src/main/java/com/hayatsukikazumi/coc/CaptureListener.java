@@ -1,10 +1,12 @@
 package com.hayatsukikazumi.coc;
+/*
+ * https://github.com/hayatsukikazumi/ConsoleCapture
+ * created on 2019/11/03
+ */
 
 /**
  * 1行キャプチャのイベントリスナー。
  *
- * https://github.com/hayatsukikazumi/ConsoleCapture
- * created on 2019/11/03
  * @author Hayatsukikazumi
  */
 public interface CaptureListener {

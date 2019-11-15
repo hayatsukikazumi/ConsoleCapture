@@ -1,5 +1,8 @@
 package com.hayatsukikazumi.coc;
-
+/*
+ * https://github.com/hayatsukikazumi/ConsoleCapture
+ * created on 2019/11/03
+ */
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -8,8 +11,6 @@ import java.util.Locale;
 /**
  * スレッドセーフなPrintStream。
  *
- * https://github.com/hayatsukikazumi/ConsoleCapture
- * created on 2019/11/03
  * @author Hayatsukikazumi
  */
 public class TSPrintStream extends PrintStream {

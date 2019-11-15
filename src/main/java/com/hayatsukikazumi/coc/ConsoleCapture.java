@@ -1,12 +1,13 @@
 package com.hayatsukikazumi.coc;
-
+/*
+ * https://github.com/hayatsukikazumi/ConsoleCapture
+ * created on 2019/11/03
+ */
 import java.io.PrintStream;
 
 /**
  * コンソール出力をキャプチャする。
  *
- * https://github.com/hayatsukikazumi/ConsoleCapture
- * created on 2019/11/03
  * @author Hayatsukikazumi
  */
 public class ConsoleCapture {
