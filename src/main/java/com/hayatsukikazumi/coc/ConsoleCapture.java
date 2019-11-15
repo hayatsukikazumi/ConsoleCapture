@@ -4,10 +4,10 @@ import java.io.PrintStream;
 
 /**
  * コンソール出力をキャプチャする。
- * ｓ
+ *
  * https://github.com/hayatsukikazumi/ConsoleCapture
+ * created on 2019/11/03
  * @author Hayatsukikazumi
- * @date 2019/11/03
  */
 public class ConsoleCapture {
 
@@ -18,8 +18,9 @@ public class ConsoleCapture {
         OUT, ERR
     }
 
-    private final PrintStream originalOut = System.out;
+    private static final String CAPTURE_MARK = "[C]";
 
+    private final PrintStream originalOut = System.out;
     private final PrintStream originalErr = System.err;
 
     private CaptureOutputStream newOut = null;
@@ -56,6 +57,7 @@ public class ConsoleCapture {
      * 引数にnullを指定した場合、その出力はキャプチャしない。
      * 既に開始済みの場合は無視される。
      * （キャプチャを終了しないとCaptureBufferを変更できない）
+     * 元の標準出力への出力は、初回起動時はtrue（出力する）で、それ以降は直前の状態を記憶する。
      * @param outBuf 標準出力用CaptureBuffer
      * @param errBuf エラー出力用CaptureBuffer
      */
@@ -82,6 +84,7 @@ public class ConsoleCapture {
      * @param outBuf 標準出力用CaptureBuffer
      * @param errBuf エラー出力用CaptureBuffer
      * @param oto 元の標準出力にも出力する場合はtrue
+     * @since 1.0.1
      */
     public synchronized void start(CaptureBuffer outBuf, CaptureBuffer errBuf, boolean oto) {
         redirect = oto;
@@ -94,9 +97,9 @@ public class ConsoleCapture {
      */
     public synchronized void stop() {
         if (inCapture) {
-            inCapture = false;
             System.setOut(originalOut);
             System.setErr(originalErr);
+            inCapture = false;
 
             try {
                 newOut.close();
@@ -123,8 +126,6 @@ public class ConsoleCapture {
     @Override
     protected void finalize() throws Throwable {
         stop();
-        System.setOut(originalOut);
-        System.setErr(originalErr);
         super.finalize();
     }
 
@@ -137,7 +138,7 @@ public class ConsoleCapture {
                 bufOut.add(type, startTime, message);
             }
             if (redirect) {
-                originalOut.print("[C]");
+                originalOut.print(CAPTURE_MARK);
                 originalOut.print(message);
             }
         }
@@ -152,7 +153,7 @@ public class ConsoleCapture {
                 bufErr.add(type, startTime, message);
             }
             if (redirect) {
-                originalErr.print("[C]");
+                originalErr.print(CAPTURE_MARK);
                 originalErr.print(message);
             }
         }

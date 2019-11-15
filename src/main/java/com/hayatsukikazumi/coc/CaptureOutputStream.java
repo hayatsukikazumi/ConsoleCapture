@@ -7,8 +7,8 @@ import java.io.IOException;
  * 書き込んだ内容を、1行ごとにキャプチャーするOutputStream。 スレッドセーフではない。
  *
  * https://github.com/hayatsukikazumi/ConsoleCapture
+ * created on 2019/11/03
  * @author Hayatsukikazumi
- * @date 2019/11/03
  */
 public class CaptureOutputStream extends ByteArrayOutputStream {
 

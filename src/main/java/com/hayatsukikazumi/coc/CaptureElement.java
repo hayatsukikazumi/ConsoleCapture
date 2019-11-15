@@ -9,8 +9,8 @@ import java.util.Date;
  * イミュータブルな1行のキャプチャ結果。
  *
  * https://github.com/hayatsukikazumi/ConsoleCapture
+ * created on 2019/11/03
  * @author Hayatsukikazumi
- * @date 2019/11/03
  */
 public class CaptureElement implements Serializable {
 
