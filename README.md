@@ -7,7 +7,7 @@
 
 Junit等でコンソール出力をログで目視する代わりに作成してみました。
 
-src/test/java/com/hayatsukikazumi/coc/Smpletest.java に大まかな使い方
+src/test/java/com/hayatsukikazumi/coc/SampleTest.java に大まかな使い方
 のイメージを示しました。
 
 ## 動作条件

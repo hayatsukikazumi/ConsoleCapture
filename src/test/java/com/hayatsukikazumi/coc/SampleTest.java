@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -15,6 +16,12 @@ import org.junit.Test;
  * @author Hayatsukikazumi
  */
 public class SampleTest {
+
+    @BeforeClass
+    public static void beforeClass() {
+        // ConsoleCapture初期化
+        ConsoleCapture.getInstance();
+    }
 
     @Before
     public void setUp() throws Exception {
@@ -76,6 +83,7 @@ public class SampleTest {
 
         // 評価
         assertEquals(4, buf1.size());
+        assertEquals(ConsoleCapture.Type.ERR, buf1.find("Error").getType());
 
         // キャプチャ内容を出力
         for (CaptureElement el : buf1.getList()) {
