@@ -19,8 +19,7 @@ public class SampleTest {
 
     @BeforeClass
     public static void beforeClass() {
-        // ConsoleCapture初期化
-        ConsoleCapture.getInstance();
+        ConsoleCapture.init();
     }
 
     @Before
@@ -34,7 +33,30 @@ public class SampleTest {
     }
 
     @Test
-    public void test1() {
+    public void testSameBuffer() {
+
+        // キャプチャ内容を保持
+        CaptureBuffer buf = new CaptureBuffer();
+
+        // キャプチャ開始
+        ConsoleCapture.getInstance().start(buf, buf);
+
+        // コンソール出力のある処理
+        System.out.println("Output");
+        System.err.println("Error Output");
+
+        // キャプチャ終了
+        ConsoleCapture.getInstance().stop();
+
+        // 評価
+        assertEquals(2, buf.size());
+        assertNotNull(buf.find("Out"));
+        assertNotNull(buf.find("Err"));
+        assertNull(buf.find("Print"));
+    }
+
+    @Test
+    public void testDifferentBuffers() {
 
         // キャプチャ内容を保持
         CaptureBuffer buf1 = new CaptureBuffer();
@@ -59,7 +81,7 @@ public class SampleTest {
     }
 
     @Test
-    public void test2() {
+    public void testPOutputToOriginalConsole() {
 
         // キャプチャ内容を保持
         CaptureBuffer buf1 = new CaptureBuffer();

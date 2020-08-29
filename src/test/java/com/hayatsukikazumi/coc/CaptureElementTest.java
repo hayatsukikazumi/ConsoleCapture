@@ -61,7 +61,11 @@ public class CaptureElementTest {
         String s1 = sf.format(new Date(1234));
         String s2 = sf.format(elem.getEndTime());
 
-        assertEquals("1234567890\tC\t" + s1 + "\t" + s2 + "\tMessage C", elem.toString());
+        String res1 = elem.toString();
+        assertEquals("1234567890\tC\t" + s1 + "\t" + s2 + "\tMessage C", res1);
+        String res2 = elem.toString();
+        assertEquals(res1, res2);
+        assertSame(res1, res2);
     }
 
     @Test

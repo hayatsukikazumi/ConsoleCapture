@@ -53,6 +53,16 @@ public class ConsoleCapture {
     }
 
     /**
+     * 初期化。
+     * このクラスを最初に使う時に1回だけ実行する。
+     * 本メソッドまたはgetInstance()実行後に複数回実行しても何もしない。
+     * @since 1.0.4
+     */
+    public static void init() {
+        getInstance();
+    }
+
+    /**
      * キャプチャを開始する。
      * 2つの引数に同じCaptureBufferのインスタンスを指定してもよい。
      * 引数にnullを指定した場合、その出力はキャプチャしない。

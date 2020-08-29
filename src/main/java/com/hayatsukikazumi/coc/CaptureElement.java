@@ -24,6 +24,7 @@ public class CaptureElement implements Serializable {
     private final long startTime;
     private final long endTime = System.currentTimeMillis();
     private final String message;
+    private String toStringBuf = null;
 
     /**
      * コンストラクタ。
@@ -85,19 +86,22 @@ public class CaptureElement implements Serializable {
      */
     @Override
     public String toString() {
-        DateFormat df = new SimpleDateFormat(DATE_FMT);
-        StringBuilder sb = new StringBuilder();
+        if (toStringBuf == null) {
+            DateFormat df = new SimpleDateFormat(DATE_FMT);
+            StringBuilder sb = new StringBuilder();
 
-        sb.append(lineNumber);
-        sb.append(SEP);
-        sb.append(type);
-        sb.append(SEP);
-        sb.append(df.format(getStartTime()));
-        sb.append(SEP);
-        sb.append(df.format(getEndTime()));
-        sb.append(SEP);
-        sb.append(message);
+            sb.append(lineNumber);
+            sb.append(SEP);
+            sb.append(type);
+            sb.append(SEP);
+            sb.append(df.format(getStartTime()));
+            sb.append(SEP);
+            sb.append(df.format(getEndTime()));
+            sb.append(SEP);
+            sb.append(message);
 
-        return sb.toString();
+            toStringBuf = sb.toString();
+        }
+        return toStringBuf;
     }
 }

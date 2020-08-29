@@ -54,6 +54,12 @@ public class ConsoleCaptureTest {
     }
 
     @Test
+    public void testInit() {
+        ConsoleCapture.init();
+        ConsoleCapture.init();  //複数回呼び出しでExceptionが発生しないこと
+    }
+
+    @Test
     public void testStartStop() {
         System.out.println("X");
         CaptureBuffer buf = new CaptureBuffer();
